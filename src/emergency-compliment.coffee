@@ -15,6 +15,7 @@
 #   Joe Groseclose <@benderTheCrime>
 
 request = require 'request'
+url = 'https://spreadsheets.google.com/feeds/list/1eEa2ra2yHBXVZ_ctH4J15tFSGEu-VTSunsrvaCAV598/od6/public/values?alt=json'
 
 module.exports = (robot) ->
   robot.respond /emergency (compliment )?(.*)/i, (res) ->
@@ -22,13 +23,17 @@ module.exports = (robot) ->
     username = res.message.user.name if username == 'me'
     compliment = "I like the cut of your jib, @#{username}"
 
-    request.get 'http://emergencycompliment.com/index.html', (e, r, body) ->
-      complimentMatch = body.match /\<p class="compliment">(.*)<\/p>/g
+    request.get url, (e, r, body) ->
+      compliments = JSON.parse(body).feed.entry;
 
       if !e && r.statusCode == 200
-        compliment = "@#{username}, #{complimentMatch[ 0 ]}"
+        compliment = "@#{username}, #{
+          compliments[ random(compliments) ].gsx$compliments.$t
+        }"
 
         if /tj|tom\sblair/.test username
-          compliment += ' :millenial: #appreciatetjday'
+          compliment += ' :millennial: #appreciateTJday'
 
       res.send compliment
+
+random = (arr) -> Math.floor (Math.random() * arr.length)
