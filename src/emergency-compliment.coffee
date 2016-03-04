@@ -19,7 +19,7 @@ request = require 'request'
 module.exports = (robot) ->
   robot.respond /emergency (compliment )?(.*)/i, (res) ->
     username = res.match[ 2 ]
-    username = msg.message.user.name if username == 'me'
+    username = res.message.user.name if username == 'me'
     compliment = "I like the cut of your jib, @#{username}"
 
     request.get 'http://emergencycompliment.com/index.html', (e, r, body) ->
