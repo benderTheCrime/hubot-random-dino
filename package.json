@@ -1,7 +1,7 @@
 {
   "name": "hubot-random-dino",
   "description": "Post a random dino!",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Joe Groseclose <@benderTheCrime>",
   "license": "MIT",
   "keywords": "hubot, hubot-scripts",
