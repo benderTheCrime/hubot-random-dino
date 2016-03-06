@@ -1,42 +1,36 @@
 # Description
-#   A hubot script that does the things
+#   Post a random dino!
 #
 # Configuration:
 #   NONE
 #
 # Commands:
-#   hubot emergency compliment <username> - Responds to the user with a compliment
+#   hubot dino me
+#   hubot raptor me
 #
 # Notes:
-#   If <username> is "me" the script will respond to the user who sent the message
-#   Added an easter egg for our good friend Tom Blair
+#   None
 #
 # Author:
 #   Joe Groseclose <@benderTheCrime>
 
 request = require 'request'
 
-# NOTE: The URL, API, and Google Document used alongside this package belong
-# expressly to the Author of http://emergencycompliment.com
-url = 'https://spreadsheets.google.com/feeds/list/1eEa2ra2yHBXVZ_ctH4J15tFSGEu-VTSunsrvaCAV598/od6/public/values?alt=json'
+url = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&?q='
+dinoUrl = "#{url}dinosaur"
+raptorUrl = "#{url}raptor"
 
 module.exports = (robot) ->
-  robot.respond /emergency (compliment )?(.*)/i, (res) ->
-    username = res.match[ 2 ]
-    username = res.message.user.name if username == 'me'
-    compliment = "I like the cut of your jib, @#{username}"
+  robot.respond /dino me/i, (res) -> getGiphy dinoUrl, res
+  robot.respond /raptor me/i, (res) -> getGiphy raptorUrl, res
 
-    request.get url, (e, r, body) ->
-      compliments = JSON.parse(body).feed.entry;
+getGiphy = (url, res) ->
+  request.get url, (e, r, body) ->
+    dinos = JSON.parse(body).feed.entry
 
-      if !e && r.statusCode == 200
-        compliment = "@#{username}, #{
-          compliments[ random(compliments) ].gsx$compliments.$t
-        }"
+    if !e && r.statusCode == 200
+      dino = dinos[ random dinos ]
 
-        if /tj|tom\sblair/.test username
-          compliment += ' :millennial: #appreciateTJday'
-
-      res.send compliment
+    res.send dino.images[ 'downsized_medium' ]
 
 random = (arr) -> Math.floor (Math.random() * arr.length)
