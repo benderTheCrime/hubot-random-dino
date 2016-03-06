@@ -21,6 +21,6 @@ Then add **hubot-random-dino** to your `external-scripts.json`:
 ```
 user1>> dino me
 hubot>> <gif url>
-user1>> raptor url
+user1>> raptor me
 hubot>> <gif url>
 ```
