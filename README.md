@@ -3,6 +3,9 @@
 Post an emergency compliment to a Slack user with http://emergencycompliment.com/!"
 See [`src/emergency-compliment.coffee`](src/emergency-compliment.coffee) for full documentation.
 
+**NOTE: The URL, API, and Google Document used alongside this package belong
+expressly to the Author of [emergencycompliment.com](http://emergencycompliment.com)**
+
 ## Installation
 
 In hubot project repo, run:

@@ -15,6 +15,9 @@
 #   Joe Groseclose <@benderTheCrime>
 
 request = require 'request'
+
+# NOTE: The URL, API, and Google Document used alongside this package belong
+# expressly to the Author of http://emergencycompliment.com
 url = 'https://spreadsheets.google.com/feeds/list/1eEa2ra2yHBXVZ_ctH4J15tFSGEu-VTSunsrvaCAV598/od6/public/values?alt=json'
 
 module.exports = (robot) ->
