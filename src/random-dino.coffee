@@ -16,7 +16,7 @@
 
 request = require 'request'
 
-url = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&?q='
+url = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q='
 dinoUrl = "#{url}dinosaur"
 raptorUrl = "#{url}raptor"
 
@@ -26,6 +26,7 @@ module.exports = (robot) ->
 
 getGiphy = (url, res) ->
   request.get url, (e, r, body) ->
+    console.log arguments
     dinos = JSON.parse(body).feed.entry
 
     if !e && r.statusCode == 200
