@@ -1,16 +1,16 @@
 {
-  "name": "hubot-emergency-compliment",
-  "description": "Post an emergency compliment to a Slack user with http://emergencycompliment.com/!",
-  "version": "1.0.2",
+  "name": "hubot-random-dino",
+  "description": "Post a random dino!",
+  "version": "1.0.0",
   "author": "Joe Groseclose <@benderTheCrime>",
   "license": "MIT",
   "keywords": "hubot, hubot-scripts",
   "repository": {
     "type": "git",
-    "url": "git://github.com/benderTheCrime/hubot-emergency-compliment.git"
+    "url": "git://github.com/benderTheCrime/hubot-random-dino.git"
   },
   "bugs": {
-    "url": "https://github.com/benderTheCrime/hubot-emergency-compliment/issues"
+    "url": "https://github.com/benderTheCrime/hubot-random-dino/issues"
   },
   "dependencies": {
     "request": "^2.69.0"
