@@ -24,14 +24,13 @@ module.exports = (robot) ->
   robot.respond /dino me/i, (res) -> getGiphy dinoUrl, res
   robot.respond /raptor me/i, (res) -> getGiphy raptorUrl, res
 
-getGiphy = (url, res) ->
-  request.get url, (e, r, body) ->
-    console.log arguments
-    dinos = JSON.parse(body).feed.entry
+getGiphy = (url, res = { send: (url) -> console.log url }) ->
+  request.get (url || dinoUrl), (e, r, body) ->
+    dinos = JSON.parse(body).data
 
     if !e && r.statusCode == 200
       dino = dinos[ random dinos ]
 
-    res.send dino.images[ 'downsized_medium' ]
+    res.send dino.images[ 'downsized_medium' ].url
 
 random = (arr) -> Math.floor (Math.random() * arr.length)
